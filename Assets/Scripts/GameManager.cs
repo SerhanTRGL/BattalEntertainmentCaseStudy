@@ -18,34 +18,36 @@ public enum ResourceType
 }
 public class PlayerResources
 {
-    private Dictionary<ResourceType, int> _resources = new();
+    private readonly Dictionary<ResourceType, Resource> _resources = new();
 
     public PlayerResources()
     {
         List<ResourceType> resourceTypes = Enum.GetValues(typeof(ResourceType)).Cast<ResourceType>().ToList();
         foreach(var resourceType in resourceTypes)
         {
-            _resources[resourceType] = 0;
+            _resources.Add(resourceType, new Resource(resourceType,0));
         }
     }   
 
-    public int GetResourceOfType(ResourceType type)
+    public Resource GetResourceOfType(ResourceType type)
     {
         return _resources[type];
     }
 
     public bool SpendResource(ResourceType resource, int amountToSpend)
     {
-        int resourceAmount = _resources[resource];
+        int resourceAmount = _resources[resource].Amount;
         if(resourceAmount - amountToSpend < 0) 
             return false;
         
-        _resources[resource] -= amountToSpend;
+        _resources[resource].Amount -= amountToSpend;
         return true;
     }
 
     public void GainResource(ResourceType resource, int amountToGain)
     {
-        _resources[resource] += amountToGain;
+        _resources[resource].Amount += amountToGain;
     }
+
+    
 }
