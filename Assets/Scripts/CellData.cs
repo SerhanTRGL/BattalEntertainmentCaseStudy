@@ -17,9 +17,7 @@ public class GridEntity : ScriptableObject
 {
     public GameObject prefab;
     public EntityType type;
-    
     public List<Resource> buildCost;
-
     public List<Resource> destructionReward;
 }
 
@@ -35,6 +33,12 @@ public class Resource
         _type = type;
         _amount = amount;
     }
+}
+
+public struct ResourceChange
+{
+    public Resource changedResource;
+    public int changeAmount;
 }
 
 public class GridEntityDatabase : ScriptableObject

@@ -19,13 +19,17 @@ public enum ResourceType
 public class PlayerResources
 {
     private readonly Dictionary<ResourceType, Resource> _resources = new();
-
+    public static event Action<ResourceChange> OnResourceValueChanged;
     public PlayerResources()
     {
         List<ResourceType> resourceTypes = Enum.GetValues(typeof(ResourceType)).Cast<ResourceType>().ToList();
-        foreach(var resourceType in resourceTypes)
+        foreach(var type in resourceTypes)
         {
-            _resources.Add(resourceType, new Resource(resourceType,0));
+            _resources.Add(type, new Resource(type, 0));
+            OnResourceValueChanged?.Invoke(new ResourceChange{
+                changedResource = _resources[type],
+                changeAmount = 0
+            });
         }
     }   
 
@@ -34,20 +38,29 @@ public class PlayerResources
         return _resources[type];
     }
 
-    public bool SpendResource(ResourceType resource, int amountToSpend)
+    public bool SpendResource(ResourceType type, int amountToSpend)
     {
-        int resourceAmount = _resources[resource].Amount;
+        int resourceAmount = _resources[type].Amount;
         if(resourceAmount - amountToSpend < 0) 
             return false;
         
-        _resources[resource].Amount -= amountToSpend;
+        _resources[type].Amount -= amountToSpend;
+        OnResourceValueChanged?.Invoke(new ResourceChange{
+                changedResource = _resources[type],
+                changeAmount = 0
+        });
         return true;
     }
 
-    public void GainResource(ResourceType resource, int amountToGain)
+    public void GainResource(ResourceType type, int amountToGain)
     {
-        _resources[resource].Amount += amountToGain;
+        _resources[type].Amount += amountToGain;
+        OnResourceValueChanged?.Invoke(new ResourceChange{
+            changedResource = _resources[type],
+            changeAmount = amountToGain
+            }
+        );
     }
 
-    
+
 }
