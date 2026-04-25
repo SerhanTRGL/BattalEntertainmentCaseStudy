@@ -19,7 +19,17 @@ public static class GridMeshGenerator
         {
             for(int x = 0; x < vertexCountX; x++)
             {
-                vertices[v] = new Vector3(x * cellSize, 0f, y * cellSize);
+                float width = size.x * cellSize;
+                float height = size.y * cellSize;
+
+                float halfWidth = width * 0.5f;
+                float halfHeight = height * 0.5f;
+
+                vertices[v] = new Vector3(
+                    x * cellSize - halfWidth,
+                    0f,
+                    y * cellSize - halfHeight
+                );
 
                 uvs[v] = new Vector2(
                     (float)x/size.x,
