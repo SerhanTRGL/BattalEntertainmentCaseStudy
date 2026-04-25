@@ -1,66 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public int startingCoins = 500;
     public int goalExperience = 500;
+    public readonly PlayerResources playerResources = new();
 
-}
-
-public enum ResourceType
-{
-    Coin,
-    Experience,
-    Resource
-}
-public class PlayerResources
-{
-    private readonly Dictionary<ResourceType, Resource> _resources = new();
-    public static event Action<ResourceChange> OnResourceValueChanged;
-    public PlayerResources()
+    void Awake()
     {
-        List<ResourceType> resourceTypes = Enum.GetValues(typeof(ResourceType)).Cast<ResourceType>().ToList();
-        foreach(var type in resourceTypes)
-        {
-            _resources.Add(type, new Resource(type, 0));
-            OnResourceValueChanged?.Invoke(new ResourceChange{
-                changedResource = _resources[type],
-                changeAmount = 0
-            });
-        }
-    }   
-
-    public Resource GetResourceOfType(ResourceType type)
-    {
-        return _resources[type];
+        playerResources.GainResource(ResourceType.Coin, startingCoins);
     }
-
-    public bool SpendResource(ResourceType type, int amountToSpend)
-    {
-        int resourceAmount = _resources[type].Amount;
-        if(resourceAmount - amountToSpend < 0) 
-            return false;
-        
-        _resources[type].Amount -= amountToSpend;
-        OnResourceValueChanged?.Invoke(new ResourceChange{
-                changedResource = _resources[type],
-                changeAmount = 0
-        });
-        return true;
-    }
-
-    public void GainResource(ResourceType type, int amountToGain)
-    {
-        _resources[type].Amount += amountToGain;
-        OnResourceValueChanged?.Invoke(new ResourceChange{
-            changedResource = _resources[type],
-            changeAmount = amountToGain
-            }
-        );
-    }
-
-
 }
