@@ -23,6 +23,32 @@ public class CustomGrid : MonoBehaviour
         OnGridReady?.Invoke(this);
     }
 
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.white;
+
+        float width = gridSize.x * cellSize;
+        float height = gridSize.y * cellSize;
+
+
+        Vector3 origin = transform.position - new Vector3(width, 0, height) * 0.5f;
+
+        //vertical lines
+        for(int x = 0; x <= gridSize.x; x++) {
+            Vector3 start = origin + new Vector3(x * cellSize, 0, 0);
+            Vector3 end = start + new Vector3(0, 0, height);
+
+            Gizmos.DrawLine(start, end);
+        }
+
+        //horizontal lines
+        for(int y = 0; y <= gridSize.y; y++) {
+            Vector3 start = origin + new Vector3(0, 0, y * cellSize);
+            Vector3 end = start + new Vector3(width, 0, 0);
+
+            Gizmos.DrawLine(start, end);
+        }
+    }
+
 }
 
 public class GridHelper
