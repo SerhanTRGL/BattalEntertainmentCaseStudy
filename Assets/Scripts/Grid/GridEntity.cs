@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName="Grid Entity", menuName = "ScriptableObjects/Grid Entity")]
 public class GridEntity : ScriptableObject
 {
     public GameObject prefab;
