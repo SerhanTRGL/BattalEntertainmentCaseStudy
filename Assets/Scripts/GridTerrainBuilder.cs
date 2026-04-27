@@ -12,7 +12,7 @@ public class GridTerrainBuilder : MonoBehaviour
         CustomGrid.OnGridReady += BuildTerrain;
     }
 
-    private void BuildTerrain(CustomGrid grid) {
+    public void BuildTerrain(CustomGrid grid) {
         _grid = grid;
 
         _terrain = GetComponent<Terrain>();
@@ -92,7 +92,7 @@ public class GridTerrainBuilder : MonoBehaviour
 
         PaintTerrain();
     }
-    private void PaintTerrain() {
+    public void PaintTerrain() {
         int res = _data.alphamapResolution;
         int layers = _data.alphamapLayers;
 
