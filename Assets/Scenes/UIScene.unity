@@ -1036,7 +1036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1201300675}
   m_Layer: 5
-  m_Name: CoinPrice
+  m_Name: PlayerCoins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1201,7 +1201,7 @@ GameObject:
   - component: {fileID: 1477089573}
   - component: {fileID: 1477089572}
   m_Layer: 5
-  m_Name: Price
+  m_Name: Amount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

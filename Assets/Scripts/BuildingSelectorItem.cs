@@ -2,13 +2,22 @@ using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BuildingSelectorItem : Selectable
+public class BuildingSelectorItem : Selectable, IPointerClickHandler
 {
     [SerializeField] private GridEntity building;
     [SerializeField] private TextMeshProUGUI coinText;
     private float coinPrice;
+
+    public void OnPointerClick(PointerEventData eventData) {
+        if (BuildingSelector.Instance == null) return;
+
+        BuildingSelector.Instance.SetSelection(building);
+
+    }
+
     protected override void Awake() {
         PlayerResources.OnResourceValueChanged += UpdateItemVisual;
         coinPrice = building.buildCost.Where(t => t.Type == ResourceType.Coin).First().Amount;
@@ -20,4 +29,5 @@ public class BuildingSelectorItem : Selectable
 
         coinText.color = change.changedResource.Amount < coinPrice ? Color.red : Color.white;
     }
+
 }

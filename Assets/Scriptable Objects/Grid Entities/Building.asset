@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc8ee6952f074f9ab2095f5d1424041, type: 3}
   m_Name: Building
   m_EditorClassIdentifier: Assembly-CSharp::GridEntity
-  prefab: {fileID: 0}
+  prefab: {fileID: 919132149155446097, guid: d916617cd229f924f908505eb1746bf7, type: 3}
   type: 0
   buildCost:
   - _type: 0

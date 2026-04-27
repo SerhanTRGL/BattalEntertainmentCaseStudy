@@ -23,7 +23,7 @@ public class CameraZoom : MonoBehaviour
         var cellSize = grid.CellSize;
 
         minRadius = Math.Max(gridSize.x, gridSize.y) * cellSize * 0.5f;
-        maxRadius = Math.Max(gridSize.x, gridSize.y) * cellSize + 5f;
+        maxRadius = Math.Max(gridSize.x, gridSize.y) * cellSize * 1.5f;
     }
 
     void Start()
