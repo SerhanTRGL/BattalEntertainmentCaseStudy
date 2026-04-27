@@ -7,7 +7,7 @@ public class ObjectSpawner : MonoBehaviour
 
     void Start()
     {
-        var helper = new GridHelper(GetComponent<CustomGrid>());
+        var helper = new GridHelper(GetComponent<GridBuilder>());
         for(int x = 0; x < helper.Grid.GridSize.x; x++)
         {
             for(int y = 0; y < helper.Grid.GridSize.y; y++)

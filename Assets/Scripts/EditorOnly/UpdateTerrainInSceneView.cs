@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class UpdateTerrainInSceneView : MonoBehaviour {
     [SerializeField] private GridTerrainBuilder _terrainBuilder;
-    [SerializeField] private CustomGrid _grid;
+    [SerializeField] private GridBuilder _grid;
 
     private Vector2Int previousGridSize = Vector2Int.zero;
     private float previousCellSize = 0f;

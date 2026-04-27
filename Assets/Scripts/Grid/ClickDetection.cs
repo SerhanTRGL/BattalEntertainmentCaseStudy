@@ -17,7 +17,7 @@ public class ClickDetection : MonoBehaviour
 
     private void MoveSphereToCell(Vector3 vector, ClickType type)
     {
-        var helper = new GridHelper(GameObject.FindGameObjectWithTag("Grid").GetComponent<CustomGrid>());
+        var helper = new GridHelper(GameObject.FindGameObjectWithTag("Grid").GetComponent<GridBuilder>());
         var cell = helper.WorldPointToCellCoordinate(vector);
 
         testSphere.position = helper.GetCellPosition(cell);
@@ -36,7 +36,7 @@ public class ClickDetection : MonoBehaviour
             Vector3 hitPoint = hit.point;
             OnClickedOnGrid?.Invoke(hitPoint, type);
             
-            var helper = new GridHelper(GameObject.FindGameObjectWithTag("Grid").GetComponent<CustomGrid>());
+            var helper = new GridHelper(GameObject.FindGameObjectWithTag("Grid").GetComponent<GridBuilder>());
             var cell = helper.WorldPointToCellCoordinate(hitPoint); 
             Debug.Log($"Clicked on:{cell}");
         }

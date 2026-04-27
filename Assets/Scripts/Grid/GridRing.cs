@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 public class GridRing : MonoBehaviour {
-    [SerializeField] private CustomGrid grid;
+    [SerializeField] private GridBuilder grid;
     [SerializeField] private float innerOffset = 2f;
     [SerializeField] private float outerOffset = 5f;
 

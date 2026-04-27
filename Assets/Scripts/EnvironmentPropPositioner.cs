@@ -6,7 +6,7 @@ public class EnvironmentPropPositioner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _propPrefabs;
     [SerializeField] private int spawnCount = 50;
-    [SerializeField] private CustomGrid _grid;
+    [SerializeField] private GridBuilder _grid;
 
 
     private void Start() {

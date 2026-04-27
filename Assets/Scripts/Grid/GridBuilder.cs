@@ -1,25 +1,29 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshFilter))]
-public class CustomGrid : MonoBehaviour
+[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
+public class GridBuilder : MonoBehaviour
 {
     [SerializeField] private Vector2Int gridSize;
     [SerializeField] private float cellSize;
+    [SerializeField] private Material gridMaterial;
 
-    public static event Action<CustomGrid> OnGridReady;
+    public static event Action<GridBuilder> OnGridReady;
     public Vector2Int GridSize => gridSize;
     public float CellSize => cellSize;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         var meshFilter = GetComponent<MeshFilter>();
         meshFilter.mesh = GridMeshGenerator.GenerateMesh(gridSize, cellSize);
+
+        var meshRenderer = GetComponent<MeshRenderer>();
+        gridMaterial.SetVector("_GridSize", new Vector4(gridSize.x, gridSize.y));
+        meshRenderer.material = gridMaterial;
+
         var collider = GetComponentInChildren<BoxCollider>();
         collider.size = new Vector3(gridSize.x * cellSize, 0, gridSize.y * cellSize);
         collider.center = Vector3.zero;
-
         OnGridReady?.Invoke(this);
     }
 
@@ -53,10 +57,10 @@ public class CustomGrid : MonoBehaviour
 
 public class GridHelper
 {
-    private CustomGrid _grid;
+    private GridBuilder _grid;
 
-    public CustomGrid Grid => _grid;
-    public GridHelper(CustomGrid grid)
+    public GridBuilder Grid => _grid;
+    public GridHelper(GridBuilder grid)
     {
         _grid = grid;
     }

@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class GridTerrainBuilder : MonoBehaviour
 {
-    [SerializeField] private CustomGrid _grid;
+    [SerializeField] private GridBuilder _grid;
     [SerializeField] private Terrain _terrain;
     [SerializeField] private TerrainData _data;
     [SerializeField] private GridRing _mountainSpawnRing;
 
     private void Awake() {
-        CustomGrid.OnGridReady += BuildTerrain;
+        GridBuilder.OnGridReady += BuildTerrain;
     }
 
-    public void BuildTerrain(CustomGrid grid) {
+    public void BuildTerrain(GridBuilder grid) {
         _grid = grid;
 
         _terrain = GetComponent<Terrain>();
