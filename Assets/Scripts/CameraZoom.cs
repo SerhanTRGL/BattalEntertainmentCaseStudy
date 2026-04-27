@@ -1,6 +1,7 @@
 using System;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class CameraZoom : MonoBehaviour
@@ -32,6 +33,9 @@ public class CameraZoom : MonoBehaviour
 
     void Update()
     {
+        //Don't scroll when mouse is over UI elements
+        if(EventSystem.current.IsPointerOverGameObject())
+            return;
         float scroll = zoomInput.action.ReadValue<Vector2>().y;
 
         if(Mathf.Abs(scroll) < 0.01f)

@@ -2,7 +2,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-public class SpawnRing : MonoBehaviour {
+public class GridRing : MonoBehaviour {
     [SerializeField] private CustomGrid grid;
     [SerializeField] private float innerOffset = 2f;
     [SerializeField] private float outerOffset = 5f;

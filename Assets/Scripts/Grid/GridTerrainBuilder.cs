@@ -6,7 +6,7 @@ public class GridTerrainBuilder : MonoBehaviour
     [SerializeField] private CustomGrid _grid;
     [SerializeField] private Terrain _terrain;
     [SerializeField] private TerrainData _data;
-    [SerializeField] private SpawnRing _mountainSpawnRing;
+    [SerializeField] private GridRing _mountainSpawnRing;
 
     private void Awake() {
         CustomGrid.OnGridReady += BuildTerrain;
