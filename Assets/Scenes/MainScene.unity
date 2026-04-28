@@ -129,7 +129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 52479795}
   - component: {fileID: 52479796}
-  - component: {fileID: 52479797}
   m_Layer: 3
   m_Name: ClickDetectionCollider
   m_TagString: Untagged
@@ -173,23 +172,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &52479797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 52479794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec85826880fb4fb8887495c3db89d258, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ClickDetection
-  cam: {fileID: 519420031}
-  gridLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  testSphere: {fileID: 1721784942}
 --- !u!1 &122327371
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c4a0ea862bee746abe7695b7036976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _gridEntityPrefab: {fileID: 0}
+  _gridEntityPrefab: {fileID: 56667903003675134, guid: 67e38ee6018f2269f8a8801348863d9e, type: 3}
   _occupiedCellsList: []
   _availableCellsList: []
 --- !u!1 &370354102
@@ -374,7 +356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa778b53bede0746b6ff124d81fca9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  cancelAction: {fileID: -3735685627340890350, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  _cancelAction: {fileID: -3735685627340890350, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  _clickAction: {fileID: 1082040911602054702, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!4 &370354104
 Transform:
   m_ObjectHideFlags: 0
@@ -401,7 +384,7 @@ GameObject:
   - component: {fileID: 399593884}
   - component: {fileID: 399593883}
   m_Layer: 0
-  m_Name: InputHandler
+  m_Name: DoubleClickHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -745,59 +728,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _terrainBuilder: {fileID: 1452205147}
   _grid: {fileID: 264456637}
---- !u!1 &1060079691
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1060079692}
-  - component: {fileID: 1060079693}
-  m_Layer: 0
-  m_Name: GameOverZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1060079692
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060079691}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2102893095}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1060079693
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060079691}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1268297479
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,92 +1375,6 @@ MonoBehaviour:
   grid: {fileID: 264456637}
   innerOffset: 4.53
   outerOffset: 4.71
---- !u!1 &2085188245
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2085188246}
-  - component: {fileID: 2085188247}
-  m_Layer: 0
-  m_Name: DangerZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2085188246
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085188245}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2102893095}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &2085188247
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085188245}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 15
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &2102893094
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2102893095}
-  m_Layer: 0
-  m_Name: GridEntity
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2102893095
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2102893094}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2085188246}
-  - {fileID: 1060079692}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2103074146
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,4 +1518,3 @@ SceneRoots:
   - {fileID: 2103074149}
   - {fileID: 370354104}
   - {fileID: 1452205150}
-  - {fileID: 2102893095}

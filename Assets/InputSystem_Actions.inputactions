@@ -7,15 +7,6 @@
             "id": "e3f2a91a-4058-4b92-b6df-d923a862af31",
             "actions": [
                 {
-                    "name": "DoubleClick",
-                    "type": "Button",
-                    "id": "9ff68b49-e8bd-4652-92c3-edc1faeab53c",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "MultiTap",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Click",
                     "type": "Button",
                     "id": "05a59c4d-f562-4a23-b43b-6b9dab0aa047",
@@ -53,17 +44,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "8d375175-268f-4b64-bcb4-f9f3af7f4732",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "DoubleClick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "105013f6-a549-4431-9de9-927724cdc140",

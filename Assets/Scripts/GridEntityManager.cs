@@ -10,8 +10,8 @@ public class GridEntityManager : MonoBehaviour
     private HashSet<Vector2Int> _availableCells = new();
 
     #if UNITY_EDITOR
-    [SerializeField] private List<Vector2Int> _occupiedCellsList;
-    [SerializeField] private List<Vector2Int> _availableCellsList;
+    [SerializeField] private List<Vector2Int> _occupiedCellsList = new();
+    [SerializeField] private List<Vector2Int> _availableCellsList = new();
     #endif
 
     private GridHelper _gridHelper;
@@ -23,7 +23,7 @@ public class GridEntityManager : MonoBehaviour
         GameGrid.OnGridReady += InitializeGridEntityManager;
     }
 
-    private void Oestroy()
+    private void OnDestroy()
     {
         GameGrid.OnGridReady -= InitializeGridEntityManager;       
     }
@@ -80,7 +80,7 @@ public class GridEntityManager : MonoBehaviour
 
         var entity = _gridEntities[cellCoordinate];
         OnGridEntityDestroyed?.Invoke(cellCoordinate, entity);
-        
+
         entity.DestroyEntity();
 
         _occupiedCells.Remove(cellCoordinate);
