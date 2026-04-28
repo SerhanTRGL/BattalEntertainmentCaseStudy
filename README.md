@@ -25,3 +25,4 @@ Known Issues:
 Other Notes:
 - The grid size is completely customizable in the editor.
 - All grid rings respond to the changes in the grid size in the editor.
+- Total time spent is roughly 20 hours.
