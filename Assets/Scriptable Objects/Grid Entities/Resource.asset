@@ -15,7 +15,7 @@ MonoBehaviour:
   prefab: {fileID: 919132149155446097, guid: 089eec677d0cfc046abd9edd2897f4f5, type: 3}
   buildCoinCost: 50
   destroyCoinReward: 100
-  buildExperienceRewardRange: {x: 0, y: 0}
+  buildExperienceRewardRange: {x: 60, y: 100}
   destroyResourceRewardRange: {x: 50, y: 70}
   destroyExperienceRewardRange: {x: 60, y: 100}
   maturingTime: 5

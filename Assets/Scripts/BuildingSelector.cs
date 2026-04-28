@@ -32,6 +32,7 @@ public class BuildingSelector : MonoBehaviour
         if (CurrentSelection != null && _canPlace)
         {
             _entityManager.PlaceEntityAtCell(CurrentSelection, _currentCell);
+            
             SetSelection(null);
         }
     }

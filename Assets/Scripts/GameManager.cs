@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private int _startingCoins = 500;
     [SerializeField] private int _goalExperience = 500;
+    public int GoalExperience => _goalExperience;
     private readonly PlayerResources _playerResources = new();
 
     public static GameManager Instance;

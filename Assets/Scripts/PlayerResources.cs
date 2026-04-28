@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class PlayerResources
 {
@@ -35,8 +36,8 @@ public class PlayerResources
 
         _resource = 0;
         OnResourceChanged?.Invoke(this, 0, 0);
+    }
 
-    }   
 
     public bool SpendCoins(int amountToSpend) {
         if (amountToSpend < 0) 

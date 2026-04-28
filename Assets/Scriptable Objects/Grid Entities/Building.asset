@@ -17,4 +17,4 @@ MonoBehaviour:
   destroyCoinReward: 100
   buildExperienceRewardRange: {x: 100, y: 150}
   destroyResourceRewardRange: {x: 50, y: 70}
-  destroyExperienceRewardRange: {x: 0, y: 0}
+  destroyExperienceRewardRange: {x: 60, y: 100}
