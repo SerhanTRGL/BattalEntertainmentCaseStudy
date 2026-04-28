@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameOverState {
     Win,
@@ -27,6 +28,9 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         PlayerResources.OnExperienceChanged += CheckWinningCondition;
+
+        //Load UI scene, quick&dirty, for demonstration only
+        SceneManager.LoadScene(1, LoadSceneMode.Additive); 
     }
 
     private void CheckWinningCondition(PlayerResources _playerResources, int currentExperience, int _change) {
