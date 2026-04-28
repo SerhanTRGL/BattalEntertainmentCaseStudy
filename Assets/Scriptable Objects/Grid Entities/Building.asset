@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffc8ee6952f074f9ab2095f5d1424041, type: 3}
+  m_Script: {fileID: 11500000, guid: fec782e3c076ae34fa74cd74d04a981d, type: 3}
   m_Name: Building
-  m_EditorClassIdentifier: Assembly-CSharp::GridEntity
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingEntity
   prefab: {fileID: 919132149155446097, guid: d916617cd229f924f908505eb1746bf7, type: 3}
-  type: 0
   buildCoinCost: 200
-  destroyCoinReward: 100
-  buildExperienceRewardRange: {x: 100, y: 150}
-  destroyResourceRewardRange: {x: 50, y: 70}
+  destroyCoinReward: 0
+  buildExperienceRewardRange: {x: 0, y: 0}
+  destroyResourceRewardRange: {x: 0, y: 0}
   destroyExperienceRewardRange: {x: 0, y: 0}

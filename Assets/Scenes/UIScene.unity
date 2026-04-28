@@ -208,9 +208,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3494615405540951375, guid: 29e2cfa9e318a0e4ba1d9c186d840ce1, type: 3}
+      propertyPath: _entity
+      value: 
+      objectReference: {fileID: 11400000, guid: dee192a965af7b14b8f64c06a85df00a, type: 2}
+    - target: {fileID: 3494615405540951375, guid: 29e2cfa9e318a0e4ba1d9c186d840ce1, type: 3}
       propertyPath: building
       value: 
-      objectReference: {fileID: 11400000, guid: eda3a87555fd1bd40812e3473962625d, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 6062606239800191573, guid: 29e2cfa9e318a0e4ba1d9c186d840ce1, type: 3}
       propertyPath: m_Name
       value: BuildingSelectorItem_Resource
@@ -1872,16 +1876,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3494615405540951375, guid: 29e2cfa9e318a0e4ba1d9c186d840ce1, type: 3}
-      propertyPath: building
+      propertyPath: _entity
       value: 
       objectReference: {fileID: 11400000, guid: eda3a87555fd1bd40812e3473962625d, type: 2}
+    - target: {fileID: 3494615405540951375, guid: 29e2cfa9e318a0e4ba1d9c186d840ce1, type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6062606239800191573, guid: 29e2cfa9e318a0e4ba1d9c186d840ce1, type: 3}
       propertyPath: m_Name
       value: BuildingSelectorItem_Building
       objectReference: {fileID: 0}
     - target: {fileID: 9116119087701364656, guid: 29e2cfa9e318a0e4ba1d9c186d840ce1, type: 3}
       propertyPath: m_text
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

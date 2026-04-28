@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -291,8 +291,8 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 5244745698827950750}
-  building: {fileID: 0}
-  coinText: {fileID: 9116119087701364656}
+  _entity: {fileID: 0}
+  _coinText: {fileID: 9116119087701364656}
 --- !u!1 &6919640530873902083
 GameObject:
   m_ObjectHideFlags: 0
