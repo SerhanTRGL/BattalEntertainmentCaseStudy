@@ -15,6 +15,7 @@ Potential Improvements:
 - The camera always focuses on the grid center. Clicking on a grid entity can make the camera focus on that cell.
 - Grid entities do have a danger zone. If an enemy is within that zone, an exclamation mark can be shown over the enemy to show the player that game over is imminent.
 - Trees are spawned as separate objects, though when painting the terrain, trees can be added to the terrain as well.
+- Enemies are instantiated and destroyed. They can be pooled.
 
 Known Issues:
 - The game can only be played properly in editor mode. This is because game and UI is separated into different scenes. So the scenes *have to be* loaded in the editor. This can be fixed with a custom scene loader.
