@@ -39,6 +39,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void TriggerGameOver()
+    {
+        OnGameOver?.Invoke(GameOverState.Lose);
+    }
     private void Start() {
         _playerResources.GainCoins(_startingCoins);
     }

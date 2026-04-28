@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private GridEntity targetEntity;
+    public GridEntity TargetEntity => targetEntity;
     [SerializeField] private float movementSpeed;
     public void InitializeEnemy(Vector3 startPoint)
     {
