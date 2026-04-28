@@ -1,58 +1,97 @@
-using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GridEntityManager : MonoBehaviour
 {
+    [SerializeField] private GameObject _gridEntityPrefab;
     private Dictionary<Vector2Int, GridEntity> _gridEntities = new();
+    private HashSet<Vector2Int> _occupiedCells = new();
+    private HashSet<Vector2Int> _availableCells = new();
+
+    #if UNITY_EDITOR
+    [SerializeField] private List<Vector2Int> _occupiedCellsList;
+    [SerializeField] private List<Vector2Int> _availableCellsList;
+    #endif
+
     private GridHelper _gridHelper;
 
     public static event Action<Vector2Int, GridEntity> OnGridEntityPlaced;
     public static event Action<Vector2Int, GridEntity> OnGridEntityDestroyed;
 
     private void Awake() {
-        Grid.OnGridReady += InitializeGridEntityManager;
+        GameGrid.OnGridReady += InitializeGridEntityManager;
     }
 
-    private void InitializeGridEntityManager(Grid grid) {
+    private void Oestroy()
+    {
+        GameGrid.OnGridReady -= InitializeGridEntityManager;       
+    }
+    private void InitializeGridEntityManager(GameGrid grid) {
         _gridHelper = new GridHelper(grid);
 
         //Initialize grid entities
         for(int x = 0; x < _gridHelper.Grid.Size.x; x++) {
             for(int y = 0; y < _gridHelper.Grid.Size.y; y++) {
-                _gridEntities[new Vector2Int(x, y)] = null;
+                var cellCoordinate = new Vector2Int(x, y);
+                _gridEntities[cellCoordinate] = null;
+                _availableCells.Add(cellCoordinate);
+
+                #if UNITY_EDITOR
+                _availableCellsList.Add(cellCoordinate);
+                #endif
             }
         }
     }
 
-    public GridEntity GetGridEntityAtCell(Vector2Int cellCoordinate) {
+    public GridEntity GetEntityAtCell(Vector2Int cellCoordinate) {
         if (!_gridHelper.IsValidCellCoordinate(cellCoordinate)) return null;
 
         return _gridEntities[cellCoordinate];
     }
-}
 
-public class GridEntity : MonoBehaviour{
-    private GridEntitySO _entitySO;
-
-    private bool needsToMature;
-
-    public void InitializeGridEntity(GridEntitySO entitySo) {
-        _entitySO = entitySo;
-
-        if(entitySo is ResourceEntitySO) {
-            needsToMature = true;
-        }
+    public bool CanPlaceEntityAtCell(Vector2Int cellCoordinate)
+    {
+        return _availableCells.Contains(cellCoordinate);
     }
 
-    private void Start() {
-        if (needsToMature)
-            StartMaturing();
+    public void PlaceEntityAtCell(GridEntitySO entitySO, Vector2Int cellCoordinate)
+    {
+        if(!_availableCells.Contains(cellCoordinate)) return; //Already occupied
+
+        var entity = Instantiate(_gridEntityPrefab).GetComponent<GridEntity>();
+        entity.PlaceEntityAtPosition(entitySO, _gridHelper.CellCoordinateToWorldPosition(cellCoordinate));
+
+        _gridEntities[cellCoordinate] = entity;
+        _availableCells.Remove(cellCoordinate);
+        _occupiedCells.Add(cellCoordinate);
+        
+        #if UNITY_EDITOR
+        _availableCellsList.Remove(cellCoordinate);
+        _occupiedCellsList.Add(cellCoordinate);
+        #endif
+
+        OnGridEntityPlaced?.Invoke(cellCoordinate, entity);
     }
 
-    private void StartMaturing() {
-        transform.localScale = Vector3.zero;
-        transform.DOScale(1, (_entitySO as ResourceEntitySO).maturingTime);
+    public void DestroyEntityAtCell(Vector2Int cellCoordinate)
+    {
+        if(!_occupiedCells.Contains(cellCoordinate)) return; //Nothing to destroy
+
+        var entity = _gridEntities[cellCoordinate];
+        OnGridEntityDestroyed?.Invoke(cellCoordinate, entity);
+        
+        entity.DestroyEntity();
+
+        _occupiedCells.Remove(cellCoordinate);
+        _availableCells.Add(cellCoordinate);
+        _gridEntities[cellCoordinate] = null;
+
+        #if UNITY_EDITOR
+        _occupiedCellsList.Remove(cellCoordinate);
+        _availableCellsList.Add(cellCoordinate);
+        #endif
+
+        
     }
 }

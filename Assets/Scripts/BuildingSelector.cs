@@ -18,7 +18,7 @@ public class BuildingSelector : MonoBehaviour
 
         Instance = this;
         cancelAction.action.performed += CancelSelection;
-        Grid.OnGridReady += g => gridHelper = new GridHelper(g);
+        GameGrid.OnGridReady += g => gridHelper = new GridHelper(g);
     }
 
     private void CancelSelection(InputAction.CallbackContext context) {
@@ -34,7 +34,7 @@ public class BuildingSelector : MonoBehaviour
             Vector2Int cell = gridHelper.WorldPointToCellCoordinate(hit.point);
 
             if(cell != -Vector2Int.one) {
-                Vector3 snappedPos = gridHelper.GetCellPosition(cell);
+                Vector3 snappedPos = gridHelper.CellCoordinateToWorldPosition(cell);
                 previewInstance.transform.position = snappedPos;
             }
             else {

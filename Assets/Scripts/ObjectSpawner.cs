@@ -7,13 +7,13 @@ public class ObjectSpawner : MonoBehaviour
 
     void Start()
     {
-        var helper = new GridHelper(GetComponent<Grid>());
+        var helper = new GridHelper(GetComponent<GameGrid>());
         for(int x = 0; x < helper.Grid.Size.x; x++)
         {
             for(int y = 0; y < helper.Grid.Size.y; y++)
             {
                 var spawnedObj = Instantiate(spawnables[Random.Range(0, spawnables.Count)]);
-                spawnedObj.transform.position = helper.GetCellPosition(new Vector2Int(x, y));
+                spawnedObj.transform.position = helper.CellCoordinateToWorldPosition(new Vector2Int(x, y));
             }
         }
     }

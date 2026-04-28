@@ -14,10 +14,10 @@ public class CameraZoom : MonoBehaviour
 
     void Awake()
     {
-        Grid.OnGridReady += CalculateOrbitalRadius;
+        GameGrid.OnGridReady += CalculateOrbitalRadius;
     }
 
-    private void CalculateOrbitalRadius(Grid grid)
+    private void CalculateOrbitalRadius(GameGrid grid)
     {
         var gridSize = grid.Size;
         var cellSize = grid.CellSize;

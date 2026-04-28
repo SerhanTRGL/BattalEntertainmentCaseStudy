@@ -2,13 +2,13 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
-public class Grid : MonoBehaviour
+public class GameGrid : MonoBehaviour
 {
     [SerializeField] private Vector2Int _size;
     [SerializeField] private float _cellSize;
     [SerializeField] private Material _gridMaterial;
 
-    public static event Action<Grid> OnGridReady;
+    public static event Action<GameGrid> OnGridReady;
     public Vector2Int Size => _size;
     public float CellSize => _cellSize;
 
@@ -57,10 +57,10 @@ public class Grid : MonoBehaviour
 
 public class GridHelper
 {
-    private Grid _grid;
+    private GameGrid _grid;
 
-    public Grid Grid => _grid;
-    public GridHelper(Grid grid)
+    public GameGrid Grid => _grid;
+    public GridHelper(GameGrid grid)
     {
         _grid = grid;
     }
@@ -87,7 +87,7 @@ public class GridHelper
         return new Vector2Int(x, y);
     }
 
-    public Vector3 GetCellPosition(Vector2Int cellCoordinate) {
+    public Vector3 CellCoordinateToWorldPosition(Vector2Int cellCoordinate) {
         if (cellCoordinate.x >= _grid.Size.x || cellCoordinate.x < 0 ||
            cellCoordinate.y >= _grid.Size.y || cellCoordinate.y < 0)
             return -Mathf.Infinity * Vector3.one;
