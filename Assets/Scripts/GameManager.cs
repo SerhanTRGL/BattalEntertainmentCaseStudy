@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public enum GameOver {
+public enum GameOverState {
     Win,
     Lose
 }
@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private readonly PlayerResources _playerResources = new();
 
     public static GameManager Instance;
-    public static event Action<GameOver> OnGameOver;
+    public static event Action<GameOverState> OnGameOver;
 
     public PlayerResources PlayerResources => _playerResources;
 
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckWinningCondition(PlayerResources _playerResources, int currentExperience, int _change) {
         if(currentExperience >= _goalExperience) {
-            OnGameOver?.Invoke(GameOver.Win);
+            OnGameOver?.Invoke(GameOverState.Win);
         }
     }
 
