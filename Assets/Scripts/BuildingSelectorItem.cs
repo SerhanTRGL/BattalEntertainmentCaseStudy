@@ -1,5 +1,4 @@
-using System;
-using System.Linq;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,15 +18,16 @@ public class BuildingSelectorItem : Selectable, IPointerClickHandler
     }
 
     protected override void Awake() {
-        PlayerResources.OnResourceValueChanged += UpdateItemVisual;
-        coinPrice = building.buildCost.Where(t => t.Type == ResourceType.Coin).First().Amount;
+        PlayerResources.OnCoinsChanged += UpdateItemVisual;
+        coinPrice = building.buildCoinCost;
         coinText.text = coinPrice.ToString();
     }
 
-    private void UpdateItemVisual(ResourceChange change) {
-        if (change.changedResource.Type != ResourceType.Coin) return;
+    Tween coinTextColorTween;
+    private void UpdateItemVisual(PlayerResources _, int current, int change) {
+        coinTextColorTween?.Kill();
 
-        coinText.color = change.changedResource.Amount < coinPrice ? Color.red : Color.white;
+        coinTextColorTween = coinText.DOColor(current < coinPrice ? Color.red : Color.white, 0.5f);
     }
 
 }

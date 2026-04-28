@@ -66,6 +66,7 @@ public class BuildingSelector : MonoBehaviour
         foreach(var r in obj.GetComponentsInChildren<Renderer>()) {
             var c = r.material.color;
             c.a = 0.5f;
+            c *= Color.red;
             r.material.color = c;
         }
     }

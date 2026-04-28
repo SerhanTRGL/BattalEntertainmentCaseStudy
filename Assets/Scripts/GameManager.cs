@@ -1,12 +1,41 @@
+using System;
 using UnityEngine;
+
+public enum GameOver {
+    Win,
+    Lose
+}
 
 public class GameManager : MonoBehaviour
 {
-    public int startingCoins = 500;
-    public int goalExperience = 500;
-    public readonly PlayerResources playerResources = new();
+    [SerializeField] private int _startingCoins = 500;
+    [SerializeField] private int _goalExperience = 500;
+    private readonly PlayerResources _playerResources = new();
+
+    public static GameManager Instance;
+    public static event Action<GameOver> OnGameOver;
+
+    public PlayerResources PlayerResources => _playerResources;
+
+    private void Awake() {
+        if(Instance != null && Instance != this) {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        PlayerResources.OnExperienceChanged += CheckWinningCondition;
+    }
+
+    private void CheckWinningCondition(PlayerResources _playerResources, int currentExperience, int _change) {
+        if(currentExperience >= _goalExperience) {
+            OnGameOver?.Invoke(GameOver.Win);
+        }
+    }
 
     private void Start() {
-        playerResources.GainResource(ResourceType.Coin, startingCoins);
+        _playerResources.GainCoins(_startingCoins);
     }
 }
+

@@ -1,12 +1,25 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName="Grid Entity", menuName = "ScriptableObjects/Grid Entity")]
-public class GridEntity : ScriptableObject
+
+public abstract class GridEntity : ScriptableObject
 {
     public GameObject prefab;
     public GridEntityType type;
-    public List<Resource> buildCost;
-    public List<Resource> buildReward;
-    public List<Resource> destructionReward;
+
+    public int buildCoinCost;
+    public int destroyCoinReward;
+
+    public Vector2Int buildExperienceRewardRange;
+    public Vector2Int destroyResourceRewardRange;
+    public Vector2Int destroyExperienceRewardRange;
+}
+
+[CreateAssetMenu(fileName = "Building Entity", menuName = "Scriptable Objects/Building Entity")]
+public class BuildingEntity : GridEntity {}
+
+[CreateAssetMenu(fileName = "Resource Entity", menuName = "Scriptable Objects/Resource Entity")]
+public class ResourceEntity : GridEntity {
+
+    [Tooltip("Maturing time in seconds. Will give fraction of rewards if destroyed without maturing")]
+    public float maturingTime;
 }

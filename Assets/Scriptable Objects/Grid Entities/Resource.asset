@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc8ee6952f074f9ab2095f5d1424041, type: 3}
   m_Name: Resource
   m_EditorClassIdentifier: Assembly-CSharp::GridEntity
-  prefab: {fileID: 0}
+  prefab: {fileID: 919132149155446097, guid: d86c15ae630a8244f97b0fb3d991fd66, type: 3}
   type: 1
-  buildCost:
-  - _type: 0
-    _amount: 50
-  buildReward: []
-  destructionReward: []
+  buildCoinCost: 0
+  destroyCoinReward: 0
+  buildExperienceRewardRange: {x: 0, y: 0}
+  destroyResourceRewardRange: {x: 0, y: 0}
+  destroyExperienceRewardRange: {x: 0, y: 0}
