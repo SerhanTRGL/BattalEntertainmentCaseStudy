@@ -1,7 +1,6 @@
 using UnityEngine;
 
-
-public class GridEntity : ScriptableObject
+public class GridEntitySO : ScriptableObject
 {
     public GameObject prefab;
 

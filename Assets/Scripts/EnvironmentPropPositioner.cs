@@ -6,14 +6,14 @@ public class EnvironmentPropPositioner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _propPrefabs;
     [SerializeField] private int spawnCount = 50;
-    [SerializeField] private GridBuilder _grid;
+    [SerializeField] private Grid _grid;
 
 
     private void Start() {
         if (_grid == null) return;
 
-        float halfWidth = _grid.GridSize.x * _grid.CellSize * 0.5f;
-        float halfHeight = _grid.GridSize.y * _grid.CellSize * 0.5f;
+        float halfWidth = _grid.Size.x * _grid.CellSize * 0.5f;
+        float halfHeight = _grid.Size.y * _grid.CellSize * 0.5f;
 
         float innerRadius = Mathf.Sqrt(halfWidth * halfWidth + halfHeight * halfHeight);
         innerRadius += _grid.CellSize * 2f;

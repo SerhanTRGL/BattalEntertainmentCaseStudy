@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BuildingSelectorItem : Selectable, IPointerClickHandler
 {
-    [SerializeField] private GridEntity _entity;
+    [SerializeField] private GridEntitySO _entity;
     [SerializeField] private TextMeshProUGUI _coinText;
     private float _coinPrice;
 

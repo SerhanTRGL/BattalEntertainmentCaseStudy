@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 public class GridRing : MonoBehaviour {
-    [SerializeField] private GridBuilder grid;
+    [SerializeField] private Grid grid;
     [SerializeField] private float innerOffset = 2f;
     [SerializeField] private float outerOffset = 5f;
 
@@ -13,8 +13,8 @@ public class GridRing : MonoBehaviour {
         get {
             if (grid == null) return 0f;
 
-            float halfWidth = grid.GridSize.x * grid.CellSize * 0.5f;
-            float halfHeight = grid.GridSize.y * grid.CellSize * 0.5f;
+            float halfWidth = grid.Size.x * grid.CellSize * 0.5f;
+            float halfHeight = grid.Size.y * grid.CellSize * 0.5f;
 
             float baseRadius = Mathf.Sqrt(halfWidth * halfWidth + halfHeight * halfHeight);
             return baseRadius + grid.CellSize * innerOffset;

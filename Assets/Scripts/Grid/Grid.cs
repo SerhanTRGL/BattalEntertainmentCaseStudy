@@ -2,27 +2,27 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
-public class GridBuilder : MonoBehaviour
+public class Grid : MonoBehaviour
 {
-    [SerializeField] private Vector2Int gridSize;
-    [SerializeField] private float cellSize;
-    [SerializeField] private Material gridMaterial;
+    [SerializeField] private Vector2Int _size;
+    [SerializeField] private float _cellSize;
+    [SerializeField] private Material _gridMaterial;
 
-    public static event Action<GridBuilder> OnGridReady;
-    public Vector2Int GridSize => gridSize;
-    public float CellSize => cellSize;
+    public static event Action<Grid> OnGridReady;
+    public Vector2Int Size => _size;
+    public float CellSize => _cellSize;
 
     void Start()
     {
         var meshFilter = GetComponent<MeshFilter>();
-        meshFilter.mesh = GridMeshGenerator.GenerateMesh(gridSize, cellSize);
+        meshFilter.mesh = GridMeshGenerator.GenerateMesh(_size, _cellSize);
 
         var meshRenderer = GetComponent<MeshRenderer>();
-        gridMaterial.SetVector("_GridSize", new Vector4(gridSize.x, gridSize.y));
-        meshRenderer.material = gridMaterial;
+        _gridMaterial.SetVector("_GridSize", new Vector4(_size.x, _size.y));
+        meshRenderer.material = _gridMaterial;
 
         var collider = GetComponentInChildren<BoxCollider>();
-        collider.size = new Vector3(gridSize.x * cellSize, 0, gridSize.y * cellSize);
+        collider.size = new Vector3(_size.x * _cellSize, 0, _size.y * _cellSize);
         collider.center = Vector3.zero;
         OnGridReady?.Invoke(this);
     }
@@ -30,23 +30,23 @@ public class GridBuilder : MonoBehaviour
     private void OnDrawGizmos() {
         Gizmos.color = Color.white;
 
-        float width = gridSize.x * cellSize;
-        float height = gridSize.y * cellSize;
+        float width = _size.x * _cellSize;
+        float height = _size.y * _cellSize;
 
 
         Vector3 origin = transform.position - new Vector3(width, 0, height) * 0.5f;
 
         //vertical lines
-        for(int x = 0; x <= gridSize.x; x++) {
-            Vector3 start = origin + new Vector3(x * cellSize, 0, 0);
+        for(int x = 0; x <= _size.x; x++) {
+            Vector3 start = origin + new Vector3(x * _cellSize, 0, 0);
             Vector3 end = start + new Vector3(0, 0, height);
 
             Gizmos.DrawLine(start, end);
         }
 
         //horizontal lines
-        for(int y = 0; y <= gridSize.y; y++) {
-            Vector3 start = origin + new Vector3(0, 0, y * cellSize);
+        for(int y = 0; y <= _size.y; y++) {
+            Vector3 start = origin + new Vector3(0, 0, y * _cellSize);
             Vector3 end = start + new Vector3(width, 0, 0);
 
             Gizmos.DrawLine(start, end);
@@ -57,10 +57,10 @@ public class GridBuilder : MonoBehaviour
 
 public class GridHelper
 {
-    private GridBuilder _grid;
+    private Grid _grid;
 
-    public GridBuilder Grid => _grid;
-    public GridHelper(GridBuilder grid)
+    public Grid Grid => _grid;
+    public GridHelper(Grid grid)
     {
         _grid = grid;
     }
@@ -71,9 +71,9 @@ public class GridHelper
         float cellSize = _grid.CellSize;
 
         Vector3 centerOffset = new Vector3(
-            _grid.GridSize.x * cellSize * 0.5f,
+            _grid.Size.x * cellSize * 0.5f,
             0,
-            _grid.GridSize.y * cellSize * 0.5f
+            _grid.Size.y * cellSize * 0.5f
         );
 
         localPoint += centerOffset;
@@ -81,23 +81,23 @@ public class GridHelper
         int x = Mathf.FloorToInt(localPoint.x / cellSize);
         int y = Mathf.FloorToInt(localPoint.z / cellSize);
 
-        if (x >= _grid.GridSize.x || x < 0 || y >= _grid.GridSize.y || y < 0)
+        if (x >= _grid.Size.x || x < 0 || y >= _grid.Size.y || y < 0)
             return -Vector2Int.one;
 
         return new Vector2Int(x, y);
     }
 
     public Vector3 GetCellPosition(Vector2Int cellCoordinate) {
-        if (cellCoordinate.x >= _grid.GridSize.x || cellCoordinate.x < 0 ||
-           cellCoordinate.y >= _grid.GridSize.y || cellCoordinate.y < 0)
+        if (cellCoordinate.x >= _grid.Size.x || cellCoordinate.x < 0 ||
+           cellCoordinate.y >= _grid.Size.y || cellCoordinate.y < 0)
             return -Mathf.Infinity * Vector3.one;
 
         float cellSize = _grid.CellSize;
 
         Vector3 centerOffset = new Vector3(
-            _grid.GridSize.x * cellSize * 0.5f,
+            _grid.Size.x * cellSize * 0.5f,
             0,
-            _grid.GridSize.y * cellSize * 0.5f
+            _grid.Size.y * cellSize * 0.5f
         );
 
         Vector3 localPos = new Vector3(
@@ -107,5 +107,9 @@ public class GridHelper
         ) - centerOffset;
 
         return _grid.transform.TransformPoint(localPos);
+    }
+
+    public bool IsValidCellCoordinate(Vector2Int cellCoordinate) {
+        return cellCoordinate.x >= 0 && cellCoordinate.x < _grid.Size.x && cellCoordinate.y >= 0 && cellCoordinate.y < _grid.Size.y;
     }
 }

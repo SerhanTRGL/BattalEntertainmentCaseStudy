@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class GridTerrainBuilder : MonoBehaviour
 {
-    [SerializeField] private GridBuilder _grid;
+    [SerializeField] private Grid _grid;
     [SerializeField] private Terrain _terrain;
     [SerializeField] private TerrainData _data;
     [SerializeField] private GridRing _mountainSpawnRing;
 
     private void Awake() {
-        GridBuilder.OnGridReady += BuildTerrain;
+        Grid.OnGridReady += BuildTerrain;
     }
 
-    public void BuildTerrain(GridBuilder grid) {
+    public void BuildTerrain(Grid grid) {
         _grid = grid;
 
         _terrain = GetComponent<Terrain>();
@@ -103,8 +103,8 @@ public class GridTerrainBuilder : MonoBehaviour
 
         Vector3 gridCenter = _grid.transform.position;
 
-        float halfWidth = _grid.GridSize.x * _grid.CellSize * 0.5f;
-        float halfHeight = _grid.GridSize.y * _grid.CellSize * 0.5f;
+        float halfWidth = _grid.Size.x * _grid.CellSize * 0.5f;
+        float halfHeight = _grid.Size.y * _grid.CellSize * 0.5f;
 
         float blendWidth = _grid.CellSize * 2f;
 

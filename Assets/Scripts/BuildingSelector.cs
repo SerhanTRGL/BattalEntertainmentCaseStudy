@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +9,7 @@ public class BuildingSelector : MonoBehaviour
     private GameObject previewInstance;
     private GridHelper gridHelper;
 
-    public GridEntity CurrentSelection { get; set; }
+    public GridEntitySO CurrentSelection { get; set; }
     private void Awake() {
         if(Instance != null && Instance != this) {
             Destroy(gameObject);
@@ -19,7 +18,7 @@ public class BuildingSelector : MonoBehaviour
 
         Instance = this;
         cancelAction.action.performed += CancelSelection;
-        GridBuilder.OnGridReady += g => gridHelper = new GridHelper(g);
+        Grid.OnGridReady += g => gridHelper = new GridHelper(g);
     }
 
     private void CancelSelection(InputAction.CallbackContext context) {
@@ -44,7 +43,7 @@ public class BuildingSelector : MonoBehaviour
         }
     }
 
-    public void SetSelection(GridEntity entity) {
+    public void SetSelection(GridEntitySO entity) {
         CurrentSelection = entity;
 
         if (previewInstance != null)

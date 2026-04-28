@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class GridEntityDatabase : ScriptableObject
 {
-    public readonly List<GridEntity> entities = new();
+    public readonly List<GridEntitySO> entities = new();
 
-    public int GetEntityIndex(GridEntity entity)
+    public int GetEntityIndex(GridEntitySO entity)
     {
         if(entities.Contains(entity))
             return entities.IndexOf(entity);
@@ -13,7 +13,7 @@ public class GridEntityDatabase : ScriptableObject
         return -1;
     }
 
-    public GridEntity GetEntityAtIndex(int index)
+    public GridEntitySO GetEntityAtIndex(int index)
     {
         if(index >= 0 && index < entities.Count)
             return entities[index];

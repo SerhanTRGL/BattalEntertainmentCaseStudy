@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 264456637}
   - component: {fileID: 264456639}
   - component: {fileID: 264456640}
+  - component: {fileID: 264456641}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Grid
@@ -329,6 +330,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &264456641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264456636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c4a0ea862bee746abe7695b7036976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &370354102
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,6 +372,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   cancelAction: {fileID: -3735685627340890350, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  gridLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!4 &370354104
 Transform:
   m_ObjectHideFlags: 0
@@ -634,8 +650,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff2897d1ab0e6f7a9c705c7e237fa92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  startingCoins: 500
-  goalExperience: 500
+  _startingCoins: 500
+  _goalExperience: 500
 --- !u!1 &905756650
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,12 +6,12 @@ public class SetupGridOrbitCamera : MonoBehaviour
 {
     void Awake()
     {
-        GridBuilder.OnGridReady += SetupCamera;
+        Grid.OnGridReady += SetupCamera;
     }
 
-    private void SetupCamera(GridBuilder grid)
+    private void SetupCamera(Grid grid)
     {
         var orbitalComponent = GetComponent<CinemachineOrbitalFollow>();
-        orbitalComponent.Radius = Math.Max(grid.GridSize.x, grid.GridSize.y) * grid.CellSize;
+        orbitalComponent.Radius = Math.Max(grid.Size.x, grid.Size.y) * grid.CellSize;
     }
 }
